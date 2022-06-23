@@ -2,12 +2,13 @@
 """ python interview lock box file """
 
 
-def canUnlockAll(list):
+def canUnlockAll(boxes):
     """ check if box is unlockable """
-    e = False
-    for x in list:
-        if len(x) and e:
-            return False
-        elif len(x) == 0:
-            e = True
-    return True
+    myKeys = [0]
+    for key in myKeys:
+        for boxKey in boxes[key]:
+            if boxKey not in myKeys and boxKey < len(boxes):
+                myKeys.append(boxKey)
+    if len(myKeys) == len(boxes):
+        return True
+    return False
