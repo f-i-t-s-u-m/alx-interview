@@ -6,6 +6,8 @@ def validUTF8(data):
     """ validUTF8 function """
     bo = True
     for i in data:
-        if i <= 0 or i >= 256:
+        try:
+            bytes.fromhex(hex(i)[2:]).decode()
+        except ValueError:
             bo = False
     return bo
