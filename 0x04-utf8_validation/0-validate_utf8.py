@@ -7,7 +7,7 @@ def validUTF8(data):
     n_bytes = 0
 
     for num in data:
-        print(format(num, "#010b"))
+        binary = format(num, "#010b")[-8:]
         if n_bytes == 0:
             for bit in binary:
                 if bit == '0':
