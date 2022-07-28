@@ -4,13 +4,16 @@ const id = process.argv[2];
 
 const req = require('request');
 const url = 'https://swapi-api.hbtn.io/api/films/' + id + '/?format=json';
-req(url, function (err, resp, body) {
+req(url, async function (err, resp, body) {
   if (!err && resp.statusCode === 200) {
     const characters = JSON.parse(body).characters;
-    characters.forEach(function (a) {
-      req(a, function (er, res, body) {
-        console.log(JSON.parse(body).name);
-      });
-    });
+    for (const a of characters ) {
+	  await new Promise(function (resolve, reject) {
+	    req(a, function (er, res, body) {
+          console.log(JSON.parse(body).name);
+        });
+		resolve();
+	  });
+    };
   }
 });
