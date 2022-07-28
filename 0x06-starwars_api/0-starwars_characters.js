@@ -3,7 +3,7 @@
 const id = process.argv[2];
 
 const req = require('request');
-const url = 'https://swapi-api.hbtn.io/api/films/' + id + '/?format=json';
+const url = 'https://swapi-api.hbtn.io/api/films/' + id;
 req(url, async function (err, resp, body) {
   if (!err && resp.statusCode === 200) {
     const characters = JSON.parse(body).characters;
